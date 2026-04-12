@@ -2,6 +2,7 @@ package com.energyforecast.backend.api;
 
 import com.energyforecast.backend.domain.EnergyReading;
 import com.energyforecast.backend.service.ReadingService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ReadingController {
     }
 
     @PostMapping
-    public EnergyReading create(@RequestBody EnergyReading reading) {
+    public EnergyReading create(@Valid @RequestBody EnergyReading reading) {
         return service.save(reading);
     }
 }
