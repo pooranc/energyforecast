@@ -1,11 +1,9 @@
 package com.energyforecast.backend.api;
 
 import com.energyforecast.backend.domain.EnergyReading;
-import com.energyforecast.backend.repository.EnergyReadingRepository;
+import com.energyforecast.backend.service.ReadingService;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,20 +11,19 @@ import java.util.List;
 @RequestMapping("/api/readings")
 public class ReadingController {
 
-    private final EnergyReadingRepository repository;
+    private final ReadingService service;
 
-    public ReadingController(EnergyReadingRepository repository) {  // ← not here
-        this.repository = repository;
+    public ReadingController(ReadingService service) {  // ← not here
+        this.service = service;
     }
 
     @GetMapping
     public List<EnergyReading> getAllReading() {
-        return repository.findAll();
+        return service.findAll();
     }
 
     @PostMapping
     public EnergyReading create(@RequestBody EnergyReading reading) {
-        reading.setTimestamp(Instant.now());
-        return repository.save(reading);
+        return service.save(reading);
     }
 }
