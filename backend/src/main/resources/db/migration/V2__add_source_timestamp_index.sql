@@ -1,0 +1,1 @@
+CREATE INDEX idx_energy_reading_source_timestamp ON energy_reading(source, timestamp);
