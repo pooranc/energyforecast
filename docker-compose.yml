@@ -25,3 +25,16 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     ports:
       - "29092:29092"
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.12.2
+    container_name: energyforecast-mlflow
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlflow-artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow_data:/mlflow-artifacts
+
+volumes:
+  mlflow_data: 
+   
