@@ -33,8 +33,9 @@ public class ReadingConsumer {
 
         if (sourceReadings.size() >= 5) {
             System.out.println("Triggering forecast for: " + reading.getSource());
-            forecastService.forecast(reading.getSource(), sourceReadings);
             buffer.remove(reading.getSource());
+            forecastService.forecast(reading.getSource(), sourceReadings);
+
         }
     }
 }
