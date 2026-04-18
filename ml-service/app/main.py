@@ -22,7 +22,7 @@ def predict(req: PredictRequest):
     window = last_values.copy()
 
     for _ in range (req.horizon_hours):
-        features = np.array([[window[-1], window[-2], window[-3], window[-6]]])
+        features = np.array([[window[-1], window[-2], window[-3], window[-4]]])
         next_val = model.predict(features)[0]
         predictions.append(round(float(next_val), 3))
         window.append(next_val)

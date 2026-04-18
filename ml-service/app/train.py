@@ -19,7 +19,7 @@ def train(source: str, readings: list):
     df = pd.DataFrame([{"timestamp": r.timestamp, "value": r.value} for r in readings])
     df = df.sort_values("timestamp").reset_index(drop=True)
 
-    lags = [1,2,3,6]
+    lags = [1,2,3,4]
     alpha = 1.0
 
     with mlflow.start_run():
